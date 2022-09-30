@@ -2,6 +2,11 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { CafeEntity } from './cafe/cafe.entity';
+import { CafeModule } from './cafe/cafe.module';
+import { TiendaEntity } from './tienda/tienda.entity';
+import { TiendaModule } from './tienda/tienda.module';
+import { CafeTiendaModule } from './cafe-tienda/cafe-tienda.module';
 
 @Module({
   imports: [
@@ -12,11 +17,14 @@ import { AppService } from './app.service';
       username: 'postgres',
       password: 'postgres',
       database: 'parcial',
-      entities: [],
+      entities: [CafeEntity,TiendaEntity],
       dropSchema: true,
       synchronize: true,
       keepConnectionAlive: true
     }),
+    CafeModule,
+    TiendaModule,
+    CafeTiendaModule,
   ],
   controllers: [AppController],
   providers: [AppService],
