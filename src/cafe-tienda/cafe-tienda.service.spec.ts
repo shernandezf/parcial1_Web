@@ -49,4 +49,16 @@ describe('CafeTiendaService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+  it('addcafetienda should add a match to an adopter', async () => {
+    const tiendap: TiendaEntity = await service.addCafetoTienda(tienda.id, cafesList[0].id);
+
+  });
+  it('addcafetienda should thrown exception for an invalid tienda', async () => {
+    const tiendap: TiendaEntity = await service.addCafetoTienda("0", cafesList[0].id);
+
+  });
+  it('addcafetienda should thrown exception for an invalid cafe', async () => {
+    const tiendap: TiendaEntity = await service.addCafetoTienda(tienda.id, "0");
+
+  });
 });
